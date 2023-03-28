@@ -39,9 +39,9 @@ namespace Server
             // manager controller routes
 
             config.Routes.MapHttpRoute(
-                name: "managerMessage",
-                routeTemplate: "api/manager/Message",
-                defaults: new { controller = "Manager", action = "Message" }
+                name: "allServices",
+                routeTemplate: "api/manager/allServices",
+                defaults: new { controller = "Manager", action = "AllServices" }
             );
             
             config.Routes.MapHttpRoute(
@@ -49,6 +49,20 @@ namespace Server
                 routeTemplate: "api/manager/addService",
                 defaults: new { controller = "Manager", action = "AddService" }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "deleteService",
+                routeTemplate: "api/manager/deleteService",
+                defaults: new { controller = "Manager", action = "DeleteService" }
+            );
+
+            config.Routes.MapHttpRoute(
+                name: "updateService",
+                routeTemplate: "api/manager/updateService",
+                defaults: new { controller = "Manager", action = "UpdateService" }
+            );
+
+
 
         }
     }

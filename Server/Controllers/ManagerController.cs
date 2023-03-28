@@ -3,11 +3,14 @@ using Server.Schema;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
+using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
 using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
+using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
 
 namespace Server.Controllers
 {
@@ -16,10 +19,12 @@ namespace Server.Controllers
         BankModelsContainer db = new BankModelsContainer();
         // GET: Manager
 
+
         [HttpGet]
-        public IHttpActionResult Message()
+        public IHttpActionResult AllServices()
         {
-            return Ok("Hello world");
+            var Records = from records in db.services select records;
+            return Ok(Records.ToList());
         }
 
         [HttpPost]
@@ -37,5 +42,38 @@ namespace Server.Controllers
             return Ok(ser);
 
         }
+
+        [HttpDelete]
+        public void DeleteService([FromBody] ServiceSchema sId)
+        {
+            var records = from record in db.services select record;
+
+            foreach(var item in records)
+            {
+                if(item.Id == sId.Id)
+                {
+                    db.services.Remove(item);
+                    db.SaveChanges();
+                }
+            }
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateService([FromBody] ServiceSchema ser)
+        {
+            var records = from record in db.services select record;
+
+            foreach (var item in records)
+            {
+                if (item.Id == ser.Id)
+                {
+                    item.Name = ser.Name;
+                    item.Time = ser.Time;
+                    db.SaveChanges();
+                }
+            }
+            return Ok(records.ToList());
+        }
+
     }
 }
