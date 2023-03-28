@@ -16,24 +16,6 @@ namespace Server.Controllers
     public class HomeController : ApiController
     {
 
-        //[HttpGet]
-        //[Route("get")]
-        //public IHttpActionResult GetService()
-        //{
-        //    // Get service logic here using the id parameter
-        //    return Ok("hello world");
-        //}
-
-        //[HttpGet]
-        //[Route("get2")]
-        //public IHttpActionResult GetService2()
-        //{
-        //    // Get service logic here using the id parameter
-        //    return Ok("hello world2");
-        //}
-
-
-        // GET: Home
         [HttpPost]
         [Route("msg1")]
         public IHttpActionResult getMessage1([FromBody] ServiceSchema sr) 

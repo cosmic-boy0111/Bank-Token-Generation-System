@@ -1,7 +1,10 @@
 import React, { createContext, useEffect, useState } from 'react'
+import { Api } from '../../../Utils/Api'
 
 import ResponsiveDialog from './CreateServiceModel'
 import ServicesList from './ServicesList'
+
+
 
 export const ServicesContext = createContext()
 
@@ -14,29 +17,22 @@ const Services = () => {
     const getData = async () => {
 
         try {
-            
-            const res = await fetch('https://localhost:44319/api/manager/allServices',{
-                method : 'GET',
-                headers : {
-                    'Content-Type': 'application/json'
-                }
+
+            Api.service.getServices().then((data) => {
+                setData(data);
             })
 
-            const resData = await res.json();
-            console.log(resData);
-            setData(resData);
-
         } catch (error) {
-            
+
         }
 
     }
 
 
     useEffect(() => {
-      getData();
+        getData();
     }, [])
-    
+
 
 
     const [service, setService] = useState({
@@ -50,56 +46,24 @@ const Services = () => {
 
             // to update the service
 
-            const res = await fetch('https://localhost:44319/api/manager/updateService',{
-                method : 'POST',
-                headers : {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify({
-                    Id : service.Id,
-                    Name : service.Name,
-                    Time :  parseInt(service.Time),
-                })
+            await Api.service.updateService({
+                Id: service.Id,
+                Name: service.Name,
+                Time: parseInt(service.Time),
             })
-
-            const resData = await res.json();
-
-            console.log(resData);
-
+            
             getData();
-
-            // var result = [];
-            // data.forEach(element => {
-            //     if (element.id === service.id) {
-            //         result.push(service)
-            //     } else {
-            //         result.push(element);
-            //     }
-            // });
-
-            // setData(result);
-
-
 
 
         } else {
 
-
             // to add a new service
 
-            const res = await fetch('https://localhost:44319/api/manager/addService',{
-                method : 'POST',
-                headers : {
-                    'Content-Type': 'application/json'
-                },
-                body : JSON.stringify({
-                    Id : service.Id,
-                    Name : service.Name,
-                    Time :  parseInt(service.Time),
-                })
-            })
-
-            const resData = await res.json();
+            await Api.service.addService({
+                Id: service.Id,
+                Name: service.Name,
+                Time: parseInt(service.Time),
+            });
 
             getData();
         }
@@ -107,25 +71,12 @@ const Services = () => {
 
     const deleteService = async (service) => {
 
-        console.log(service);
-
-        const res = await fetch('https://localhost:44319/api/manager/deleteService', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                Id: service.Id
-            })
+        await Api.service.deleteService({
+            Id: service.Id
         })
-
-        const resData = await res.json();
-        console.log(resData);
 
         getData();
 
-        // var result = data.filter((ele) => ele.id !== service.id);
-        // setData(result);
     }
 
     return (

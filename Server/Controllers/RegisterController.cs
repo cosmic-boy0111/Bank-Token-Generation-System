@@ -18,18 +18,6 @@ namespace Server.Controllers
     {
         BankModelsContainer db = new BankModelsContainer();
 
-        //[HttpGet]
-        //public IHttpActionResult Message()
-        //{
-        //    return Ok("Hello world");
-        //}
-
-        //[HttpGet]
-        //public IHttpActionResult Message2()
-        //{
-        //    return Ok("Hello world2");
-        //}
-
         [HttpPost]
         [Route("Register")]
         public IHttpActionResult Register([FromBody] UserSchema user)

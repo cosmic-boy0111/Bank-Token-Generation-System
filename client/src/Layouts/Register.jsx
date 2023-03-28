@@ -6,6 +6,8 @@ import TextField from '@mui/material/TextField';
 import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
+import { Api } from '../Utils/Api';
+
 const Register = () => {
 
     const navigate = useNavigate();
@@ -42,20 +44,15 @@ const Register = () => {
             if(formData.Password !== formData.ConfirmPassword) return;
             console.log('under submit 2');
 
-            const res = await fetch('https://localhost:44319/api/register/Register',{
-                method: 'POST',
-                headers : {
-                    'Content-Type': 'application/json',
-                },
-                body : JSON.stringify({
-                    AccountNumber : formData.AccountNumber,
-                    Name : formData.Name,
-                    Password : formData.Password
-                })
+            Api.user.Register({
+                AccountNumber : formData.AccountNumber,
+                Name : formData.Name,
+                Password : formData.Password
+            }).then((data)=>{
+                console.log(data);
             })
 
-            const data = await res.json();
-            console.log(data);
+            // const data = await res.json();
 
         } catch (error) {
             
