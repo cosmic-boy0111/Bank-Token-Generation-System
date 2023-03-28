@@ -197,10 +197,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BankModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\service.cs">
+      <DependentUpon>BankModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BankModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Schema\ServiceSchema.cs" />
     <Compile Include="Schema\UserSchema.cs" />
   </ItemGroup>
   <ItemGroup>
