@@ -39,40 +39,55 @@ namespace Server.Controllers
             db.services.Add(data);
             db.SaveChanges();
 
-            return Ok(ser);
+            return Ok(data);
 
         }
 
-        [HttpDelete]
-        public void DeleteService([FromBody] ServiceSchema sId)
+        [HttpPost]
+        public IHttpActionResult DeleteService([FromBody] ServiceSchema sId)
         {
-            var records = from record in db.services select record;
+            //var records = from record in db.services select record;
 
-            foreach(var item in records)
-            {
-                if(item.Id == sId.Id)
-                {
-                    db.services.Remove(item);
-                    db.SaveChanges();
-                }
-            }
+            //foreach (var item in records)
+            //{
+            //    if (item.Id == sId.Id)
+            //    {
+            //        db.services.Remove(item);
+            //        db.SaveChanges();
+            //        break;
+            //    }
+            //}
+
+            var service =  db.services.SingleOrDefault(s => s.Id == sId.Id);
+            db.services.Remove(service);
+            db.SaveChanges();
+
+            return Ok(db.services.ToArray());
+
         }
 
-        [HttpPut]
+        [HttpPost]
         public IHttpActionResult UpdateService([FromBody] ServiceSchema ser)
         {
-            var records = from record in db.services select record;
+            //var records = from record in db.services select record;
 
-            foreach (var item in records)
-            {
-                if (item.Id == ser.Id)
-                {
-                    item.Name = ser.Name;
-                    item.Time = ser.Time;
-                    db.SaveChanges();
-                }
-            }
-            return Ok(records.ToList());
+            //foreach (var item in records)
+            //{
+            //    if (item.Id == ser.Id)
+            //    {
+            //        item.Name = ser.Name;
+            //        item.Time = ser.Time;
+            //        db.SaveChanges();
+            //    }
+            //}
+
+            var service = db.services.SingleOrDefault(s => s.Id == ser.Id);
+            service.Name = ser.Name;
+            service.Time = ser.Time;
+
+            db.SaveChanges();
+
+            return Ok(service);
         }
 
     }

@@ -46,7 +46,7 @@ namespace Server
             
             config.Routes.MapHttpRoute(
                 name: "addService",
-                routeTemplate: "api/manager/addService",
+                routeTemplate: "api/addService",
                 defaults: new { controller = "Manager", action = "AddService" }
             );
 

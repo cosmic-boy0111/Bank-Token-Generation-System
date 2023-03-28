@@ -12,7 +12,7 @@ const ServiceForm = ({ serviceName, setServiceName }) => {
   const handleChange = (val) => {
     setService({
       ...service,
-      'name': val
+      'Name': val
     });
   }
 
@@ -25,7 +25,7 @@ const ServiceForm = ({ serviceName, setServiceName }) => {
     if(val === ''){
       setService({
         ...service,
-        'time': ''
+        'Time': ''
       });
       return;
     }
@@ -34,7 +34,7 @@ const ServiceForm = ({ serviceName, setServiceName }) => {
 
       setService({
         ...service,
-        'time': parseInt(val)
+        'Time': parseInt(val)
       });
     }
   }
@@ -42,11 +42,11 @@ const ServiceForm = ({ serviceName, setServiceName }) => {
 
   return (
     <div>
-      <TextField id="standard-basic" value={service.name} onChange={(e) => handleChange(e.target.value)} label="Service Name" variant="standard" style={{
+      <TextField id="standard-basic" value={service.Name} onChange={(e) => handleChange(e.target.value)} label="Service Name" variant="standard" style={{
         width: '100%',
         marginBottom: '1rem'
       }} />
-      <TextField id="standard-basic" value={service.time} onChange={(e) => timeChange(e.target.value)} label="Service Time(in minutes)" variant="standard" style={{
+      <TextField id="standard-basic" value={service.Time} onChange={(e) => timeChange(e.target.value)} label="Service Time(in minutes)" variant="standard" style={{
         width: '100%'
       }} />
     </div>

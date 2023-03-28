@@ -19,8 +19,9 @@ export default function ResponsiveDialog() {
 
   const handleClickOpen = () => {
     setService({
-        id : '',
-        name : ''
+        Id : '',
+        Name : '',
+        Time : ''
     })
     setOpen(true);
   };
@@ -59,7 +60,7 @@ export default function ResponsiveDialog() {
           <Button autoFocus onClick={handleClose}>
             Cancel
           </Button>
-          <Button disabled={service.name && service.time ? false : true}  variant='contained' onClick={Add} autoFocus>
+          <Button disabled={service.Name && service.Time ? false : true}  variant='contained' onClick={Add} autoFocus>
             {
                 service.id === '' ? 'Create' : "Update"
             }
