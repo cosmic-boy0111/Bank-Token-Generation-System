@@ -11,9 +11,10 @@ using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 
 namespace Server.Controllers
 {
-    public class RegisterController : ApiController
+    public class ManagerController : ApiController
     {
         BankModelsContainer db = new BankModelsContainer();
+        // GET: Manager
 
         [HttpGet]
         public IHttpActionResult Message()
@@ -22,20 +23,19 @@ namespace Server.Controllers
         }
 
         [HttpPost]
-        public IHttpActionResult Register([FromBody] UserSchema user)
+        public IHttpActionResult AddService([FromBody] ServiceSchema ser)
         {
-            User u = new User() { 
-                Name = user.Name,
-                AccountNumber= user.AccountNumber,
-                Password= user.Password,
+            service data = new service()
+            {
+                Name = ser.Name,
+                Time = ser.Time,
             };
-            
-            db.Users.Add(u);
+
+            db.services.Add(data);
             db.SaveChanges();
 
-            return Ok(user);
+            return Ok(ser);
+
         }
-
-
     }
 }

@@ -21,11 +21,35 @@ namespace Server
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            // Registre controller routes
+
+            config.Routes.MapHttpRoute(
+                name: "message",
+                routeTemplate: "api/register/Message",
+                defaults: new { controller = "Register", action = "Message" }
+            );
+
             config.Routes.MapHttpRoute(
                 name: "registration",
-                routeTemplate: "api/register",
+                routeTemplate: "api/register/Register",
                 defaults: new { controller = "Register", action = "Register" }
             );
+
+
+            // manager controller routes
+
+            config.Routes.MapHttpRoute(
+                name: "managerMessage",
+                routeTemplate: "api/manager/Message",
+                defaults: new { controller = "Manager", action = "Message" }
+            );
+            
+            config.Routes.MapHttpRoute(
+                name: "addService",
+                routeTemplate: "api/manager/addService",
+                defaults: new { controller = "Manager", action = "AddService" }
+            );
+
         }
     }
 }

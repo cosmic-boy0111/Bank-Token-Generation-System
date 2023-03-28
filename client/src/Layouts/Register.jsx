@@ -42,7 +42,7 @@ const Register = () => {
             if(formData.Password !== formData.ConfirmPassword) return;
             console.log('under submit 2');
 
-            const res = await fetch('https://localhost:44319/api/register',{
+            const res = await fetch('https://localhost:44319/api/register/Register',{
                 method: 'POST',
                 headers : {
                     'Content-Type': 'application/json',
