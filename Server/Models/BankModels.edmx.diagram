@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="2b0ec056b5ef4a7c90d2bd13a792ecbb" Name="Diagram1" >
         <EntityTypeShape EntityType="BankModels.User" Width="1.5" PointX="1.875" PointY="1.375" />
+        <EntityTypeShape EntityType="BankModels.service" Width="1.5" PointX="5.5" PointY="2.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

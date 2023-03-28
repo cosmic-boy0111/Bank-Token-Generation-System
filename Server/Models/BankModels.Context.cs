@@ -26,5 +26,6 @@ namespace Server.Models
         }
     
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<service> services { get; set; }
     }
 }

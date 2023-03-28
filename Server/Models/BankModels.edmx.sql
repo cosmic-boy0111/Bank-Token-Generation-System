@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/27/2023 17:52:06
--- Generated from EDMX file: C:\Users\Admin\source\repos\Bank-Token-Generation-System\Server\Models\BankModels.edmx
+-- Date Created: 03/28/2023 12:17:17
+-- Generated from EDMX file: E:\CSE Sem 8\Pratiti Internship\Project\Final Bank Project\Bank-Token-Generation-System\Server\Models\BankModels.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
@@ -39,6 +39,14 @@ CREATE TABLE [dbo].[Users] (
 );
 GO
 
+-- Creating table 'services'
+CREATE TABLE [dbo].[services] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [Name] nvarchar(max)  NOT NULL,
+    [Time] nvarchar(max)  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -46,6 +54,12 @@ GO
 -- Creating primary key on [Id] in table 'Users'
 ALTER TABLE [dbo].[Users]
 ADD CONSTRAINT [PK_Users]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'services'
+ALTER TABLE [dbo].[services]
+ADD CONSTRAINT [PK_services]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

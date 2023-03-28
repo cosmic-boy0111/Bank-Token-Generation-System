@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\Admin\source\repos\Bank-Token-Generation-System\Server\Models\BankModels.edmx'. 
+﻿// T4 code generation is enabled for model 'E:\CSE Sem 8\Pratiti Internship\Project\Final Bank Project\Bank-Token-Generation-System\Server\Models\BankModels.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
