@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/28/2023 12:17:17
+-- Date Created: 03/28/2023 12:51:55
 -- Generated from EDMX file: E:\CSE Sem 8\Pratiti Internship\Project\Final Bank Project\Bank-Token-Generation-System\Server\Models\BankModels.edmx
 -- --------------------------------------------------
 
@@ -25,6 +25,9 @@ GO
 IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Users];
 GO
+IF OBJECT_ID(N'[dbo].[services]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[services];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -43,7 +46,7 @@ GO
 CREATE TABLE [dbo].[services] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(max)  NOT NULL,
-    [Time] nvarchar(max)  NOT NULL
+    [Time] int  NOT NULL
 );
 GO
 

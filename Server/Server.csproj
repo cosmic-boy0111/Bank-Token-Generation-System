@@ -197,6 +197,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BankModels.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\service.cs">
+      <DependentUpon>BankModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs">
       <DependentUpon>BankModels.tt</DependentUpon>
     </Compile>
