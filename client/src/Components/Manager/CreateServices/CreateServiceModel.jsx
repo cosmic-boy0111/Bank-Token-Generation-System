@@ -62,7 +62,7 @@ export default function ResponsiveDialog() {
           </Button>
           <Button disabled={service.Name && service.Time ? false : true}  variant='contained' onClick={Add} autoFocus>
             {
-                service.id === '' ? 'Create' : "Update"
+                service.Id === '' ? 'Create' : "Update"
             }
           </Button>
         </DialogActions>

@@ -46,7 +46,7 @@ const Services = () => {
     })
 
     const AddService = async () => {
-        if (service.id !== '') {
+        if (service.Id !== '') {
 
             // to update the service
 

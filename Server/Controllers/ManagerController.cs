@@ -11,9 +11,12 @@ using HttpDeleteAttribute = System.Web.Http.HttpDeleteAttribute;
 using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
 using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 using HttpPutAttribute = System.Web.Http.HttpPutAttribute;
+using RouteAttribute = System.Web.Http.RouteAttribute;
+using RoutePrefixAttribute = System.Web.Http.RoutePrefixAttribute;
 
 namespace Server.Controllers
 {
+    [RoutePrefix("api/manager")]
     public class ManagerController : ApiController
     {
         BankModelsContainer db = new BankModelsContainer();
@@ -21,13 +24,16 @@ namespace Server.Controllers
 
 
         [HttpGet]
+        [Route("allServices")]
         public IHttpActionResult AllServices()
         {
             var Records = from records in db.services select records;
             return Ok(Records.ToList());
         }
 
+
         [HttpPost]
+        [Route("addService")]
         public IHttpActionResult AddService([FromBody] ServiceSchema ser)
         {
             service data = new service()
@@ -44,20 +50,9 @@ namespace Server.Controllers
         }
 
         [HttpPost]
+        [Route("deleteService")]
         public IHttpActionResult DeleteService([FromBody] ServiceSchema sId)
         {
-            //var records = from record in db.services select record;
-
-            //foreach (var item in records)
-            //{
-            //    if (item.Id == sId.Id)
-            //    {
-            //        db.services.Remove(item);
-            //        db.SaveChanges();
-            //        break;
-            //    }
-            //}
-
             var service =  db.services.SingleOrDefault(s => s.Id == sId.Id);
             db.services.Remove(service);
             db.SaveChanges();
@@ -67,19 +62,9 @@ namespace Server.Controllers
         }
 
         [HttpPost]
+        [Route("updateService")]
         public IHttpActionResult UpdateService([FromBody] ServiceSchema ser)
         {
-            //var records = from record in db.services select record;
-
-            //foreach (var item in records)
-            //{
-            //    if (item.Id == ser.Id)
-            //    {
-            //        item.Name = ser.Name;
-            //        item.Time = ser.Time;
-            //        db.SaveChanges();
-            //    }
-            //}
 
             var service = db.services.SingleOrDefault(s => s.Id == ser.Id);
             service.Name = ser.Name;
