@@ -1,13 +1,7 @@
 import { getRequest, postRequest } from "./Methods";
 
 class User {
-<<<<<<< Updated upstream
-    
-    Register(body){
-        return postRequest('/register/Register', body);
-    }  
-    
-=======
+
   Register(body) {
     return postRequest("/register/Register", body);
   }
@@ -15,7 +9,12 @@ class User {
   Login(body) {
     return postRequest("/login/Login", body);
   }
->>>>>>> Stashed changes
+
+  getUser(body){
+    return postRequest('/login/getUser',body);
+  }
+
+
 }
 
 

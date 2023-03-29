@@ -33,11 +33,14 @@ import {
   Routes,
   Route,
   NavLink,
+  useNavigate,
 } from 'react-router-dom'
 
 import Services from '../Components/Manager/CreateServices/Services';
 
 import CountertopsIcon from '@mui/icons-material/Countertops';
+import { Api } from '../Utils/Api';
+import { AppContext } from '../App';
 
 
 const drawerWidth = 240;
@@ -95,6 +98,28 @@ export default function Manager() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
+  const navigate = useNavigate();
+
+  const {setRootUser} = React.useContext(AppContext)
+
+  const validate = () => {
+    if(localStorage.getItem('user_auth') !== null){
+      Api.user.getUser({
+        Id : JSON.parse(localStorage.getItem('user_id'))
+      }).then((data)=>{
+        console.log(data);
+        setRootUser(data);
+      })
+    }else{
+      navigate('/login')
+    }
+  }
+
+  React.useEffect(() => {
+    validate();
+  }, [])
+  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -102,6 +127,7 @@ export default function Manager() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  
 
 
   const navList = [
@@ -110,11 +136,6 @@ export default function Manager() {
       icon : <CountertopsIcon />,
       path : '/'
     },
-    // {
-    //   name : 'Waiting Room',
-    //   icon : <TvRoundedIcon />,
-    //   path : '/waiting-room'
-    // }
     
   ]
 

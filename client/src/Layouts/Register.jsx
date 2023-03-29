@@ -52,6 +52,8 @@ const Register = () => {
                 console.log(data);
             })
 
+            gotoLogin();
+
             // const data = await res.json();
 
         } catch (error) {

@@ -32,11 +32,12 @@ namespace Server.Controllers
             db.Users.Add(u);
             db.SaveChanges();
 
-            string userData = "Gauarv:12345"; 
+            //string userData = $"{u.Id}"; 
 
-            HttpCookie authCookie = new HttpCookie("myAuthCookie", userData);
-            authCookie.Expires = DateTime.Now.AddDays(30);
-            HttpContext.Current.Response.Cookies.Add(authCookie);
+            //HttpCookie authCookie = new HttpCookie("myAuthCookie", userData);
+            //authCookie.Expires = DateTime.Now.AddDays(30);
+            //HttpContext.Current.Response.Cookies.Add(authCookie);
+            //HttpContext.Current.Request.Cookies["myAuthCookie"]
 
             return Ok(user);
         }

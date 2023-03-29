@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import "../Style/Login.css";
 import { useState } from "react";
 
@@ -7,38 +6,44 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Api } from "../Utils/Api";
 
 const Login = () => {
-  const [user, setUser] = useState({
-    Name: "",
-    Password: "",
-  });
 
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    Name : '',
+    Password : ''
+  })
 
   const gotoRegister = () => {
     navigate(`/register`);
   };
 
-  const onUserInput = (e) => {
+  const changeHandler = (e) => {
     var name = e.target.name;
     var value = e.target.value;
-    setUser({
-      ...user,
-      [name]: value,
-    });
-  };
+
+    setFormData({
+      ...formData,
+      [name] : value
+    })
+
+  }
+ 
 
   const handleLogin = () => {
-    const data = {};
+    
+    if(formData.Name === '' || formData.Password === '') return;
 
-    axios
-      .post("/api/login/Login", data)
-      .then((response) => {})
+    Api.user.Login(formData).then((data)=>{
+      if(data.Id !== undefined){
+        localStorage.setItem('user_auth', JSON.stringify(data.Id));
+        navigate('/');
+      }
+    })
 
-      .catch((error) => {
-        console.log(error);
-      });
   };
 
   return (
@@ -50,7 +55,9 @@ const Login = () => {
           label="User Name"
           variant="standard"
           style={{ width: "100%", marginBottom: "1rem" }}
-          onChange={onUserInput}
+          name = "Name"
+          value={formData.Name}
+          onChange={changeHandler}
         />
         <TextField
           id="standard-password-input"
@@ -59,7 +66,9 @@ const Login = () => {
           autoComplete="current-password"
           variant="standard"
           style={{ width: "100%", marginBottom: "1rem" }}
-          onChange={onUserInput}
+          name = "Password"
+          value={formData.Password}
+          onChange={changeHandler}
         />
 
         <Button
