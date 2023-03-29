@@ -6,9 +6,11 @@ class User {
     
     Register(body){
         return postRequest('/register/Register', body);
-    }    
+    }  
     
 }
+
+
 
 class Service {
 

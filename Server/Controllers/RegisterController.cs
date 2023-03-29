@@ -11,6 +11,7 @@ using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 using RouteAttribute = System.Web.Http.RouteAttribute;
 using RoutePrefixAttribute = System.Web.Http.RoutePrefixAttribute;
 
+
 namespace Server.Controllers
 {
     [RoutePrefix("api/register")]
@@ -30,6 +31,12 @@ namespace Server.Controllers
             
             db.Users.Add(u);
             db.SaveChanges();
+
+            string userData = "Gauarv:12345"; 
+
+            HttpCookie authCookie = new HttpCookie("myAuthCookie", userData);
+            authCookie.Expires = DateTime.Now.AddDays(30);
+            HttpContext.Current.Response.Cookies.Add(authCookie);
 
             return Ok(user);
         }
