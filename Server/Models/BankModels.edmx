@@ -17,6 +17,7 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="AccountNumber" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Role" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="services">
     <Key>
@@ -42,6 +43,7 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="AccountNumber" Type="String" Nullable="false" />
           <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Role" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="service">
           <Key>
@@ -64,6 +66,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
           <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

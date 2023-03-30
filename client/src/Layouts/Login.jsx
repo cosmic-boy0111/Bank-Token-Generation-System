@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import "../Style/Login.css";
 import { useState } from "react";
 
@@ -7,6 +7,7 @@ import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { Api } from "../Utils/Api";
+import { AppContext } from "../App";
 
 const Login = () => {
 
@@ -16,6 +17,8 @@ const Login = () => {
     Name : '',
     Password : ''
   })
+
+  const {setRootUser} = useContext(AppContext)
 
   const gotoRegister = () => {
     navigate(`/register`);
@@ -31,6 +34,28 @@ const Login = () => {
     })
 
   }
+
+
+  const validate = () => {
+    if(localStorage.getItem('user_auth') === null) {
+      navigate('/login')
+    }else{
+      Api.user.getUser({
+        Id : parseInt(JSON.parse(localStorage.getItem('user_auth')))
+      }).then((data)=>{
+        console.log(data);
+        if(data.status === 400) navigate('/login')
+        else{
+          setRootUser(data)
+          navigate('/')
+        }
+      })
+    }
+  }
+
+  React.useEffect(() => {
+    validate();
+  }, [])
  
 
   const handleLogin = () => {
@@ -40,6 +65,7 @@ const Login = () => {
     Api.user.Login(formData).then((data)=>{
       if(data.Id !== undefined){
         localStorage.setItem('user_auth', JSON.stringify(data.Id));
+        setRootUser(data);
         navigate('/');
       }
     })

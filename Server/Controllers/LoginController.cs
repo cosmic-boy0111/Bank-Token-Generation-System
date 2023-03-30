@@ -37,7 +37,7 @@ namespace Server.Controllers
                 }
 
             }
-            return Ok( new MessageSchema() { Message = "User not found" } );
+            return Ok( new MessageSchema() { Message = "User not found",  status = 400} );
            
         }
 
@@ -46,7 +46,7 @@ namespace Server.Controllers
 
         public IHttpActionResult GetUser([FromBody] UserSchema user_id)
         {
-            var user = db.services.SingleOrDefault(u => u.Id == user_id.Id);
+            var user = db.Users.SingleOrDefault(u => u.Id == user_id.Id);
             if(user == null)
             {
                 return Ok(new MessageSchema()

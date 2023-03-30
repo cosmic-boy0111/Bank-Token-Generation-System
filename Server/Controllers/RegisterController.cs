@@ -27,6 +27,7 @@ namespace Server.Controllers
                 Name = user.Name,
                 AccountNumber= user.AccountNumber,
                 Password= user.Password,
+                Role = user.Role,
             };
             
             db.Users.Add(u);

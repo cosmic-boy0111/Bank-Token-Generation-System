@@ -102,24 +102,6 @@ export default function Manager() {
 
   const {setRootUser} = React.useContext(AppContext)
 
-  const validate = () => {
-    if(localStorage.getItem('user_auth') !== null){
-      Api.user.getUser({
-        Id : JSON.parse(localStorage.getItem('user_id'))
-      }).then((data)=>{
-        console.log(data);
-        setRootUser(data);
-      })
-    }else{
-      navigate('/login')
-    }
-  }
-
-  React.useEffect(() => {
-    validate();
-  }, [])
-  
-
   const handleDrawerOpen = () => {
     setOpen(true);
   };

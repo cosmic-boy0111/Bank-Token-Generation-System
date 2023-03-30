@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import '../Style/Login.css'
 
 import Box from '@mui/material/Box';
@@ -7,14 +7,37 @@ import { Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 
 import { Api } from '../Utils/Api';
+import { AppContext } from '../App';
 
 const Register = () => {
 
     const navigate = useNavigate();
+    const {setRootUser} = useContext(AppContext)
 
     const gotoLogin = () => {
         navigate(`/login`);
     }
+
+    const validate = () => {
+        if(localStorage.getItem('user_auth') === null) {
+          navigate('/login')
+        }else{
+          Api.user.getUser({
+            Id : parseInt(JSON.parse(localStorage.getItem('user_auth')))
+          }).then((data)=>{
+            console.log(data);
+            if(data.status === 400) navigate('/register')
+            else{
+                setRootUser(data)
+                navigate('/')
+              }
+          })
+        }
+      }
+    
+      React.useEffect(() => {
+        validate();
+      }, [])
 
     const [formData, setFormData] = useState({
         AccountNumber : '',
@@ -47,7 +70,8 @@ const Register = () => {
             Api.user.Register({
                 AccountNumber : formData.AccountNumber,
                 Name : formData.Name,
-                Password : formData.Password
+                Password : formData.Password,
+                Role : 'Customer'
             }).then((data)=>{
                 console.log(data);
             })
