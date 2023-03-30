@@ -5,6 +5,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import { Api } from '../../../Utils/Api';
 
 const ITEM_HEIGHT = 50;
 const ITEM_PADDING_TOP = 8;
@@ -39,15 +40,37 @@ function getStyles(name, personName, theme) {
   };
 }
 
-export default function MultipleSelect({setSelectedService}) {
+export default function MultipleSelect({ setSelectedService }) {
   const theme = useTheme();
   const [personName, setPersonName] = React.useState([]);
+
+  const [services, setServices] = React.useState([])
+
+  const getServices = async () => {
+
+    try {
+
+      Api.service.getServices().then((data) => {
+        setServices(data);
+      })
+
+    } catch (error) {
+
+    }
+
+  }
+
+
+  React.useEffect(() => {
+    getServices();
+  }, [])
 
   const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     setSelectedService(value)
+    console.log(value);
     setPersonName(
       // On autofill we get a stringified value.
       typeof value === 'string' ? value.split(',') : value,
@@ -56,24 +79,24 @@ export default function MultipleSelect({setSelectedService}) {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 300}}>
+      <FormControl sx={{ m: 1, width: 300 }}>
         {/* <InputLabel id="demo-multiple-name-label">Services</InputLabel> */}
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput label="Service" notched={false}/>}
+          input={<OutlinedInput label="Service" notched={false} />}
           MenuProps={MenuProps}
           size='small'
         >
-          {names.map((name) => (
+          {services.map((service) => (
             <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}
+              key={service.Id}
+              value={service.Id}
+              style={getStyles(service.Id, services, theme)}
             >
-              {name}
+              {service.Name}
             </MenuItem>
           ))}
         </Select>
