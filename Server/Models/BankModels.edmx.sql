@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 03/30/2023 11:31:49
+-- Date Created: 03/30/2023 13:21:20
 -- Generated from EDMX file: C:\Users\Admin\source\repos\Bank-Token-Generation-System\Server\Models\BankModels.edmx
 -- --------------------------------------------------
 
@@ -28,6 +28,9 @@ GO
 IF OBJECT_ID(N'[dbo].[services]', 'U') IS NOT NULL
     DROP TABLE [dbo].[services];
 GO
+IF OBJECT_ID(N'[dbo].[Tokens]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Tokens];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -51,6 +54,18 @@ CREATE TABLE [dbo].[services] (
 );
 GO
 
+-- Creating table 'Tokens'
+CREATE TABLE [dbo].[Tokens] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [TokenNo] int  NOT NULL,
+    [ServiceName] nvarchar(max)  NOT NULL,
+    [Status] int  NOT NULL,
+    [WaitingTime] int  NOT NULL,
+    [NoShowCount] int  NOT NULL,
+    [UserId] int  NOT NULL
+);
+GO
+
 -- --------------------------------------------------
 -- Creating all PRIMARY KEY constraints
 -- --------------------------------------------------
@@ -64,6 +79,12 @@ GO
 -- Creating primary key on [Id] in table 'services'
 ALTER TABLE [dbo].[services]
 ADD CONSTRAINT [PK_services]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'Tokens'
+ALTER TABLE [dbo].[Tokens]
+ADD CONSTRAINT [PK_Tokens]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 

@@ -38,6 +38,7 @@
     <Property Name="Status" Type="int" Nullable="false" />
     <Property Name="WaitingTime" Type="int" Nullable="false" />
     <Property Name="NoShowCount" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -76,6 +77,7 @@
           <Property Name="Status" Type="Int32" Nullable="false" />
           <Property Name="WaitingTime" Type="Int32" Nullable="false" />
           <Property Name="NoShowCount" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -112,6 +114,7 @@
           <ScalarProperty Name="Status" ColumnName="Status" />
           <ScalarProperty Name="WaitingTime" ColumnName="WaitingTime" />
           <ScalarProperty Name="NoShowCount" ColumnName="NoShowCount" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

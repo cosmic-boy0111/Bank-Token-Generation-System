@@ -15,7 +15,7 @@ namespace Server.Controllers
         BankModelsContainer db = new BankModelsContainer();
 
         [HttpGet]
-        [Route("WaitingRoom/")]
+        [Route("WaitingRoom")]
 
 
         public IHttpActionResult GetAllToken()
