@@ -8,6 +8,7 @@
   <EntityContainer Name="BankModelsStoreContainer">
     <EntitySet Name="Users" EntityType="BankModels.Store.Users" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="services" EntityType="BankModels.Store.services" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tokens" EntityType="BankModels.Store.Tokens" store:Type="Tables" Schema="dbo" />
   </EntityContainer>
   <EntityType Name="Users">
     <Key>
@@ -27,6 +28,17 @@
     <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Time" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Tokens">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TokenNo" Type="int" Nullable="false" />
+    <Property Name="ServiceName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="WaitingTime" Type="int" Nullable="false" />
+    <Property Name="NoShowCount" Type="int" Nullable="false" />
+  </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -34,6 +46,7 @@
         <EntityContainer Name="BankModelsContainer" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="BankModels.User" />
           <EntitySet Name="services" EntityType="BankModels.service" />
+          <EntitySet Name="Tokens" EntityType="BankModels.Token" />
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -52,6 +65,17 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Time" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Token">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TokenNo" Type="Int32" Nullable="false" />
+          <Property Name="ServiceName" Type="String" Nullable="false" />
+          <Property Name="Status" Type="Int32" Nullable="false" />
+          <Property Name="WaitingTime" Type="Int32" Nullable="false" />
+          <Property Name="NoShowCount" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -76,6 +100,18 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Time" ColumnName="Time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tokens">
+      <EntityTypeMapping TypeName="IsTypeOf(BankModels.Token)">
+        <MappingFragment StoreEntitySet="Tokens">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TokenNo" ColumnName="TokenNo" />
+          <ScalarProperty Name="ServiceName" ColumnName="ServiceName" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="WaitingTime" ColumnName="WaitingTime" />
+          <ScalarProperty Name="NoShowCount" ColumnName="NoShowCount" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

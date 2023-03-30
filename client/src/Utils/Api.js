@@ -1,11 +1,9 @@
 import { getRequest, postRequest } from "./Methods";
 
 class User {
-
   Register(body) {
     return postRequest("/register/Register", body);
   }
-
   Login(body) {
     return postRequest("/login/Login", body);
   }
@@ -16,8 +14,6 @@ class User {
 
 
 }
-
-
 
 class Service {
   getServices() {
